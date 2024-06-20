@@ -10,7 +10,7 @@ export const fetchNews = createAsyncThunk(
   async ({ category, page }) => {
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=b61eb376835048cf8ff79d20f1dfd24f`
+        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=b61eb376835048cf8ff79d20f1dfd24f`
       );
       return {
         articles: response.data.articles,
@@ -28,7 +28,7 @@ export const searchNews = createAsyncThunk(
   async ({ query, page }) => {
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=${query}&pageSize=${pageSize}&page=${page}&apiKey=b61eb376835048cf8ff79d20f1dfd24f`
+        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${query}&pageSize=${pageSize}&page=${page}&apiKey=b61eb376835048cf8ff79d20f1dfd24f`
       );
       return {
         articles: response.data.articles,
@@ -61,7 +61,7 @@ const newsSlice = createSlice({
     },
     setQuery: (state, action) => {
       state.query = action.payload;
-      state.page = 1; // Reset to page 1 when category change
+      state.page = 1; 
     },
     setPage: (state, action) => {
       state.page = action.payload;

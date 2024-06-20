@@ -15,9 +15,14 @@ const Navbar = () => {
               <Heart className=" h-4 w-4 text-slate-50" />
             </button>
           </Link>
-          <button className="h-10 px-4 py-2 bg-zinc-900 hover:bg-zinc-700 rounded-lg">
-            <Github className=" h-4 w-4 text-slate-50" />
-          </button>
+          <Link
+            to="https://github.com/codemononoke/News-Portal"
+            target="_blank"
+          >
+            <button className="h-10 px-4 py-2 bg-zinc-900 hover:bg-zinc-700 rounded-lg">
+              <Github className=" h-4 w-4 text-slate-50" />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

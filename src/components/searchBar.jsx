@@ -23,6 +23,7 @@ const SearchBar = () => {
         id="default-search"
         className="block w-full p-2.5 ps-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-zinc-800 focus:border-zinc-800"
         placeholder="Search Mockups, Logos..."
+        value={q}
         onChange={(e) => setQ(e.target.value)}
         required
       />
