@@ -3,15 +3,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const pageSize = 6; // Number of articles per page
+const country = "us";
 
 // Async thunk to fetch news articles
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
   async ({ category, page }) => {
     try {
-      const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=${pageSize}&page=${page}&apiKey=b61eb376835048cf8ff79d20f1dfd24f`
-      );
+      const response = await axios.get("https://news-api-rjem.onrender.com/api/news", {
+        params: {
+          category,
+          country,
+          page,
+          pageSize,
+        },
+      });
       return {
         articles: response.data.articles,
         totalResults: response.data.totalResults,
@@ -28,7 +34,14 @@ export const searchNews = createAsyncThunk(
   async ({ query, page }) => {
     try {
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${query}&pageSize=${pageSize}&page=${page}&apiKey=b61eb376835048cf8ff79d20f1dfd24f`
+        "https://news-api-rjem.onrender.com/api/news/search",
+        {
+          params: {
+            query,
+            page,
+            pageSize,
+          },
+        }
       );
       return {
         articles: response.data.articles,
@@ -61,7 +74,7 @@ const newsSlice = createSlice({
     },
     setQuery: (state, action) => {
       state.query = action.payload;
-      state.page = 1; 
+      state.page = 1;
     },
     setPage: (state, action) => {
       state.page = action.payload;
